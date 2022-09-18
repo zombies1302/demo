@@ -21,14 +21,19 @@ function Login (props){
       headers: {'Content-Type':'application/json',
     }
   }).then((res) => res.json()).then(data => {   
-    console.log(data)   
-    let token = data.accessToken
-    Notify.success("Đăng Nhập Thành Công")
-    localStorage.setItem('token', token);
-    navi('/admin');
-    
+    console.log(data)  
+    if (data.status_code == 401) {
+       Notify.failure(`${data.message}`);
+     } else{
+       let token = data.accessToken
+       Notify.success("Đăng Nhập Thành Công")
+       localStorage.setItem('token', token);
+       navi('/admin');
+     }
 
-  });
+
+
+   });
   
 
 
