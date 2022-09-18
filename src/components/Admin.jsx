@@ -11,15 +11,15 @@ function Admin (props){
     return (<h1>Vui lòng đăng nhập để tiếp tục</h1>)
   }else{
 
-    fetch(`https://casestudy.cyberlearn.vn/api/Users/TestToken`,{
-      method: "POST",
+    fetch(`https://furniture.thaylongdeptrai.dev/api/users`,{
+      method: "get",
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${token}`}
       })
     .then((res) => res.json()).then((data)=>{
       console.log(data)
-      conntent = data.content
+
     })
 
 

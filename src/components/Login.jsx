@@ -11,26 +11,22 @@ function Login (props){
 
   const loginEmail = (e)=>{
     let data = {
-      "email":refEmail.current.value,
-      "passWord": refPassword.current.value
+      "username":refEmail.current.value,
+      "password": refPassword.current.value
     }
     
-    fetch(`https://casestudy.cyberlearn.vn/api/Users/signin`, {
+    fetch(`https://furniture.thaylongdeptrai.dev/api/users/login`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {'Content-Type':'application/json',
     }
   }).then((res) => res.json()).then(data => {   
     console.log(data)   
-    let token = data.content.accessToken
-    if (data.statusCode == 200) {
-      // statement
-      Notify.success("Đăng Nhập Thành Công")
-      localStorage.setItem('token', token);
-      navi('/admin');
-    }else{
-      Notify.failure("Vui lòng kiểu tra lại tên đăng nhập và mật khẩu!")
-    }
+    let token = data.accessToken
+    Notify.success("Đăng Nhập Thành Công")
+    localStorage.setItem('token', token);
+    navi('/admin');
+    
 
   });
   
